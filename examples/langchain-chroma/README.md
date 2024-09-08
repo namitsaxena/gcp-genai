@@ -79,6 +79,19 @@ root@c4a232f5055e:/app# find / -name config.json -print
 - Vector stores | Langchain[[python.langchain.com](https://python.langchain.com/docs/modules/data_connection/vectorstores)]
 
 # Mac direct building issues:
+* So for now restricted to using <3.11 due to some underlying dependencies like pytorch and senetence-transformers
+  * `pip install chromadb` fails with python 3.11.0 · Issue #163 · chroma-core/chroma · GitHub[[github.com](https://github.com/chroma-core/chroma/issues/163)]
+* the above have been fixed in chroma-client (may have to run client/server separately)
+  * Remove sentence-transformers as a hard requirement · Issue #249 · chroma-core/chroma · GitHub[[github.com](https://github.com/chroma-core/chroma/issues/249)]
+
+* Error in building
+```Collecting langchain-core<0.2.0,>=0.1.40 (from langchain-chroma->-r requirements.txt (line 5))
+  Using cached langchain_core-0.1.52-py3-none-any.whl.metadata (5.9 kB)
+ERROR: Cannot install langchain-chroma because these package versions have conflicting dependencies.
+
+The conflict is caused by:
+    chromadb 0.4.24 depends on pulsar-client>=3.1.0
+```    
 ```
 ERROR: Could not find a version that satisfies the requirement pulsar-client>=3.1.0 (from versions: 2.5.1, 2.5.2, 2.6.0, 2.7.0, 2.7.1)
 ERROR: No matching distribution found for pulsar-client>=3.1.0
