@@ -27,6 +27,15 @@ from vertexai.language_models import (
     # CodeChatModel,
 )
 
+# this is the newer model (PaLM has been deprecated)
+from vertexai.generative_models import GenerativeModel
+
+def test_gemini():
+    model = GenerativeModel("gemini-1.0-pro")
+    responses = model.generate_content("The opposite of hot is")
+    # print("Responses: {}".format(responses))
+    print("Responses: {}".format(responses.candidates[0].content.parts[0].text))
+
 
 # Uses only TextGenerationModel (From vertexai)
 def text_generation(
@@ -89,6 +98,9 @@ if __name__ == '__main__':
     # #####################################
     # CHAT
     # #####################################
-    chatting()
+    # chatting()
+
+    # test
+    test_gemini()
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
